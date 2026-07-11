@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 
 const FOUNDER = "founder@patentioanalytics.com";
-const KELLY = "kelly@patentioanalytics.com";
+const JASMOL = "jasmol@patentioanalytics.com";
 
 const FIRM_TYPES = [
   { value: "IP services company", label: "IP services co." },
@@ -31,7 +31,7 @@ export default function ProposalBuilder() {
       prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
     );
 
-  const { timeline, mailtoFounder, mailtoKelly } = useMemo(() => {
+  const { timeline, mailtoFounder, mailtojasmol } = useMemo(() => {
     const chosen = SERVICES.filter((s) => selected.includes(s.value));
     const weeks = chosen.reduce((sum, s) => sum + s.weeks, 0);
     const hasContent = selected.includes("Content generation");
@@ -62,7 +62,7 @@ export default function ProposalBuilder() {
     return {
       timeline,
       mailtoFounder: `mailto:${FOUNDER}${query}`,
-      mailtoKelly: `mailto:${KELLY}${query}`,
+      mailtojasmol: `mailto:${JASMOL}${query}`,
     };
   }, [firm, selected, urgency]);
 
@@ -158,7 +158,7 @@ export default function ProposalBuilder() {
               File with {FOUNDER}
             </a>
             <span className="alt">
-              or write to <a href={mailtoKelly}>{KELLY}</a>
+              or write to <a href={mailtojasmol}>{JASMOL}</a>
             </span>
           </div>
         </div>
