@@ -66,7 +66,7 @@ needs again is **yoursite.com/studio**.
   - `ProcessStepper.tsx` — FILING → EXAMINATION → ALLOWANCE → GRANT stepper
   - `PriorArt.tsx` — differentiation section
   - `ProposalBuilder.tsx` — live "provisional application" builder generating
-    pre-filled mailto links to founder@ and kelly@patentioanalytics.com
+    pre-filled mailto links to founder@ and jasmol@patentioanalytics.com
   - `Reveal.tsx` — IntersectionObserver scroll-reveal wrapper (respects reduced motion)
 
 ## Editing contacts / copy
