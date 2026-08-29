@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const LINKS = [
   { id: "claims", label: "Services" },
@@ -9,11 +10,15 @@ const LINKS = [
   { id: "contact", label: "Contact" },
 ];
 
+const PAGE_LINKS = [{ href: "/blog", label: "Blog" }];
+
 export default function Nav() {
   const [active, setActive] = useState<string | null>(null);
+  const pathname = usePathname();
+  const onHome = pathname === "/";
 
   useEffect(() => {
-    if (!("IntersectionObserver" in window)) return;
+    if (!onHome || !("IntersectionObserver" in window)) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -27,16 +32,29 @@ export default function Nav() {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [onHome]);
 
   return (
     <nav>
-      <a className="wordmark" href="#top">
+      <a className="wordmark" href="/">
         PATENT<span>IO</span>
       </a>
       <div className="nav-links">
         {LINKS.map(({ id, label }) => (
-          <a key={id} href={`#${id}`} className={active === id ? "active" : ""}>
+          <a
+            key={id}
+            href={onHome ? `#${id}` : `/#${id}`}
+            className={active === id ? "active" : ""}
+          >
+            {label}
+          </a>
+        ))}
+        {PAGE_LINKS.map(({ href, label }) => (
+          <a
+            key={href}
+            href={href}
+            className={pathname.startsWith(href) ? "active" : ""}
+          >
             {label}
           </a>
         ))}
